@@ -1,2 +1,2 @@
-# wpr-exercises
-Repository containing exercises from WPR lectures.
+# WPRG
+Repository containing exercises from WPRG lectures.
