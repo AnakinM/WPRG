@@ -29,7 +29,6 @@ function validate($field, $message, $validators, $min = 0, $max = 0)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <style>
         fieldset {
             width: 300px;
@@ -168,6 +167,11 @@ function validate($field, $message, $validators, $min = 0, $max = 0)
         updateGuestFields();
     </script>
 
+
+    ?>
+
+
+    <a href="index.php">Menu</a>
 </body>
 
 </html>

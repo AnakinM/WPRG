@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require 'validators.php';
 $errors = false;
@@ -22,6 +23,8 @@ function validate($field, $message, $validators, $min = 0, $max = 0)
 }
 ?>
 
+=======
+>>>>>>> 685df3aab3f13f3f7399283b66aa921705cd33af
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +32,7 @@ function validate($field, $message, $validators, $min = 0, $max = 0)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<<<<<<< HEAD
 
     <style>
         fieldset {
@@ -39,10 +43,13 @@ function validate($field, $message, $validators, $min = 0, $max = 0)
             margin: 5px;
         }
     </style>
+=======
+>>>>>>> 685df3aab3f13f3f7399283b66aa921705cd33af
 </head>
 
 <body>
     <?php
+<<<<<<< HEAD
     $numberOfGuests = "";
     $mainGuestFirstName = "";
     $mainGuestLastName = "";
@@ -133,6 +140,34 @@ function validate($field, $message, $validators, $min = 0, $max = 0)
         echo "<p>Is smoker: <strong>" . ($isSmoker ? "yes" : "no") . "</strong></p>";
     }
     ?>
+=======
+
+    ?>
+    <form action="exercise2.php" method="post">
+        <fieldset>
+            <select name="numberOfGuests">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select></br>
+            <input type="text" name="mainGuestFirstName" placeholder="Main Guest First Name"></br>
+            <input type="text" name="mainGuestLastName" placeholder="Main Guest Last Name"></br>
+            <input type="text" name="mainGuestAddress" placeholder="Main Guest Address"></br>
+            <input type="text" name="mainGuestEmail" placeholder="Main Guest Email"></br>
+            <input type="text" name="creditCardNumber" placeholder="Credit Card Number"></br>
+            <input type="text" name="creditCardExpirationDate" placeholder="Credit Card Expiration Date"></br>
+            <input type="text" name="creditCardSecurityCode" placeholder="Credit Card Security Code"></br>
+            <input type="date" name="checkInDate"></br>
+            <input type="date" name="checkOutDate"></br>
+            <input type="time" name="checkInTime"></br>
+            <input type="checkbox" name="extraBedIncluded" value="no"> Do you need an extra bed?</br>
+            <input type="checkbox" name="acIncluded" value="no"> Do you need an AC?</br>
+            <input type="checkbox" name="isSmoker" value="no"> Are you smoking?</br>
+        </fieldset>
+        <button type="submit" name="submit">Submit</button>
+    </form>
+>>>>>>> 685df3aab3f13f3f7399283b66aa921705cd33af
     </br>
     <a href="index.php">Menu</a>
 </body>
