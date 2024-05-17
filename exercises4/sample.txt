@@ -1,0 +1,4 @@
+Wiersz pierwszy
+Wiersz drugi
+Wiersz trzeci
+Wiersz czwarty
