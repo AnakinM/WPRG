@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 require_once 'config.php';
+require_once PRIVATE_PATH . '/DB.php';
+require_once PRIVATE_PATH . '/repositories/UserRepository.php';
+require_once PRIVATE_PATH . '/repositories/UserProfileRepository.php';
+require_once PRIVATE_PATH . '/services/UserService.php';
 
 class SessionManager
 {
