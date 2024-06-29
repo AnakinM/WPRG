@@ -76,6 +76,7 @@ class UserService
         SessionManager::startSession();
         session_unset();
         session_destroy();
+        setcookie('remember_me', '', time() - 3600);
     }
 
     public function removeAccount(int $user_id): void
