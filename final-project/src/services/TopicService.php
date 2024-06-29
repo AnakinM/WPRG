@@ -26,7 +26,6 @@ class TopicService
 
     private function isAllowedToEditOrDelete(int $user_id, int $topic_user_id): bool
     {
-        session_start();
         $role = $_SESSION['role'] ?? null;
         return $role === Role::Administrator->value ||
             ($role === Role::Moderator->value && $_SESSION['user_id'] === $user_id) ||

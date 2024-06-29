@@ -16,21 +16,21 @@ if (!isset($_SESSION['user_id'])) {
 $db = new DB(DSN, USERNAME, PASSWORD);
 
 // Initialize repositories
-$commentRepository = new CommentRepository($db);
+$topicRepository = new CommentRepository($db);
 
 // Initialize services
-$commentService = new CommentService($db, $commentRepository, new UserRepository($db));
+$topicService = new CommentService($db, $topicRepository, new UserRepository($db));
 
 $comment_id = $_GET['id'];
 $topic_id = $_GET['topic_id'];
-$comment = $commentService->getComment($comment_id);
+$topic = $topicService->getComment($comment_id);
 
-if (!$comment) {
+if (!$topic) {
     header("Location: /topics/view.php?id=$topic_id");
     exit();
 }
 
-$isOwner = $comment->user_id === $_SESSION['user_id'];
+$isOwner = $topic->user_id === $_SESSION['user_id'];
 
 if (!isAdmin() && !$isOwner && !isModerator()) {
     header("Location: /topics/view.php?id=$topic_id");
@@ -44,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = $_POST['content'];
 
     try {
-        $comment = $commentService->updateComment($comment_id, $content);
+        $topic = $topicService->updateComment($comment_id, $content);
         $updateSuccess = 'Comment updated successfully.';
     } catch (Exception $e) {
         $updateError = $e->getMessage();
-        $comment = $commentService->getComment($comment_id);
+        $topic = $topicService->getComment($comment_id);
     }
 }
 
@@ -59,20 +59,20 @@ include TEMPLATES_PATH . '/navbar.php';
 <div class="container mt-5">
     <h1 class="text-center">Edit Comment</h1>
     <?php if ($updateError): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo htmlspecialchars($updateError); ?>
-        </div>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo htmlspecialchars($updateError); ?>
+                </div>
     <?php endif; ?>
     <?php if ($updateSuccess): ?>
-        <div class="alert alert-success" role="alert">
-            <?php echo htmlspecialchars($updateSuccess); ?>
-        </div>
+                <div class="alert alert-success" role="alert">
+                    <?php echo htmlspecialchars($updateSuccess); ?>
+                </div>
     <?php endif; ?>
     <form method="post" action="edit.php?id=<?php echo $comment_id; ?>&topic_id=<?php echo $topic_id; ?>">
         <div class="form-group">
             <label for="content">Content</label>
             <textarea class="form-control" id="content" name="content" rows="5"
-                required><?php echo $comment ? htmlspecialchars($comment->content) : ""; ?></textarea>
+                required><?php echo $topic ? htmlspecialchars($topic->content) : ""; ?></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update Comment</button>
     </form>

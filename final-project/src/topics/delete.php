@@ -1,9 +1,11 @@
 <?php
 require_once dirname(__DIR__) . '/config.php';
 require_once PRIVATE_PATH . '/DB.php';
-require_once PRIVATE_PATH . '/repositories/CommentRepository.php';
-require_once PRIVATE_PATH . '/services/CommentService.php';
+require_once PRIVATE_PATH . '/repositories/TopicRepository.php';
+require_once PRIVATE_PATH . '/repositories/SectionRepository.php';
+require_once PRIVATE_PATH . '/services/TopicService.php';
 require_once PRIVATE_PATH . '/SessionManager.php';
+require_once PRIVATE_PATH . '/utils.php';
 
 // Ensure the user is logged in
 SessionManager::startSession();
@@ -16,34 +18,33 @@ if (!isset($_SESSION['user_id'])) {
 $db = new DB(DSN, USERNAME, PASSWORD);
 
 // Initialize repositories
-$topicRepository = new CommentRepository($db);
+$topicRepository = new TopicRepository($db);
+$sectionRepository = new SectionRepository($db);
 
 // Initialize services
-$topicService = new CommentService($db, $topicRepository, new UserRepository($db));
+$topicService = new TopicService($db, $topicRepository, $sectionRepository, new UserRepository($db));
 
-$comment_id = $_GET['id'];
-$topic_id = $_GET['topic_id'];
-$topic = $topicService->getComment($comment_id);
+$topic_id = $_GET['id'];
+$topic = $topicService->getTopic($topic_id);
 
 if (!$topic) {
-    header("Location: /topics/view.php?id=$topic_id");
+    header("Location: /index.php");
     exit();
 }
 
-$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === Role::Administrator->value;
 $isOwner = $topic->user_id === $_SESSION['user_id'];
 
-if (!$isAdmin && !$isOwner) {
+if (!isAdmin() && !$isOwner) {
     header("Location: /topics/view.php?id=$topic_id");
     exit();
 }
 
 try {
-    $topicService->deleteComment($comment_id);
+    $topicService->removeTopic($topic_id);
     header("Location: /topics/view.php?id=$topic_id");
     exit();
 } catch (Exception $e) {
-    header("Location: /topics/view.php?id=$topic_id&error=Unable to delete comment");
+    header("Location: /topics/view.php?id=$topic_id&error=Unable to delete topic");
     exit();
 }
 ?>

@@ -32,7 +32,8 @@ class TopicRepository
             ['id' => $id]
         );
         $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Topic::class);
-        return $stmt->fetch();
+        $result = $stmt->fetch();
+        return $result ? $result : NULL;
     }
 
     /**

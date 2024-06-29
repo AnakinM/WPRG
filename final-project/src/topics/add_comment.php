@@ -9,10 +9,10 @@ SessionManager::startSession();
 $db = new DB(DSN, USERNAME, PASSWORD);
 
 // Initialize repositories
-$commentRepository = new CommentRepository($db);
+$topicRepository = new CommentRepository($db);
 
 // Initialize the service
-$commentService = new CommentService($db, $commentRepository, new UserRepository($db));
+$topicService = new CommentService($db, $topicRepository, new UserRepository($db));
 if (!isset($_SESSION['user_id']) && !isset($_POST['nickname'])) {
     header('Location: /login.php');
     exit();
@@ -23,7 +23,7 @@ $nickname = isset($_POST['nickname']) ? $_POST['nickname'] . " (Unauthenticated 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 try {
-    $commentService->addComment($topic_id, $user_id, $nickname, $content);
+    $topicService->addComment($topic_id, $user_id, $nickname, $content);
     header("Location: view.php?id=$topic_id");
     exit();
 } catch (Exception $e) {
