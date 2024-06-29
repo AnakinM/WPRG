@@ -6,7 +6,7 @@ require_once PRIVATE_PATH . '/repositories/TopicRepository.php';
 require_once PRIVATE_PATH . '/services/SectionService.php';
 require_once PRIVATE_PATH . '/services/TopicService.php';
 require_once PRIVATE_PATH . '/SessionManager.php';
-
+SessionManager::startSession();
 // Initialize the database connection
 $db = new DB(DSN, USERNAME, PASSWORD);
 

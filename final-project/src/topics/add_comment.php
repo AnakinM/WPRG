@@ -4,7 +4,7 @@ require_once PRIVATE_PATH . '/DB.php';
 require_once PRIVATE_PATH . '/repositories/CommentRepository.php';
 require_once PRIVATE_PATH . '/services/CommentService.php';
 require_once PRIVATE_PATH . '/SessionManager.php';
-
+SessionManager::startSession();
 // Initialize the database connection
 $db = new DB(DSN, USERNAME, PASSWORD);
 

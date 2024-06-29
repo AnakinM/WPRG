@@ -58,6 +58,7 @@ class UserService
             $_SESSION['user_id'] = $user->id;
             $_SESSION['username'] = $user->username;
             $_SESSION['role'] = $user->role->value;
+            echo "User ID: " . $_SESSION['user_id'] . "<br>";
 
             if ($rememberMe) {
                 $token = bin2hex(random_bytes(16));

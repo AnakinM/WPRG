@@ -6,6 +6,6 @@ define('PASSWORD', 'admin');
 define("PRIVATE_PATH", dirname(__FILE__));
 define("PROJECT_PATH", dirname(PRIVATE_PATH) . '/html');
 define("TEMPLATES_PATH", PROJECT_PATH . '/templates');
-define("SESSION_TIMEOUT", 3600);  // 1 hour
+define("SESSION_TIMEOUT", 3600);
 
 ?>

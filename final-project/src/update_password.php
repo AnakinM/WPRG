@@ -5,7 +5,6 @@ require_once PRIVATE_PATH . '/repositories/UserRepository.php';
 require_once PRIVATE_PATH . '/services/UserService.php';
 require_once PRIVATE_PATH . '/SessionManager.php';
 
-// Ensure the user is logged in
 SessionManager::startSession();
 if (!isset($_SESSION['user_id'])) {
     header('Location: /login.php');
